@@ -104,6 +104,49 @@ function formatDate(dateValue) {
   });
 }
 
+function getEventStatusBadge(dateValue) {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  const eventDate = new Date(dateValue);
+  eventDate.setHours(0, 0, 0, 0);
+
+  if (eventDate < today) {
+    return `<span class="event-status event-status-past">Past</span>`;
+  }
+
+  return `<span class="event-status event-status-upcoming">Upcoming</span>`;
+}
+
+function getFilteredAndSortedEvents() {
+  let events = getEvents();
+
+  const filterCategory = document.getElementById("filterCategory");
+  const sortEvents = document.getElementById("sortEvents");
+
+  const selectedCategory = filterCategory ? filterCategory.value : "";
+  const sortOption = sortEvents ? sortEvents.value : "newest";
+
+  if (selectedCategory) {
+    events = events.filter(function (eventItem) {
+      return eventItem.category === selectedCategory;
+    });
+  }
+
+  events.sort(function (a, b) {
+    const dateA = new Date(a.date);
+    const dateB = new Date(b.date);
+
+    if (sortOption === "oldest") {
+      return dateA - dateB;
+    }
+
+    return dateB - dateA;
+  });
+
+  return events;
+}
+
 function renderEvents() {
   const container = document.getElementById("eventsContainer");
 
@@ -111,9 +154,10 @@ function renderEvents() {
     return;
   }
 
-  const events = getEvents();
+  const allEvents = getEvents();
+  const events = getFilteredAndSortedEvents();
 
-  if (events.length === 0) {
+  if (allEvents.length === 0) {
     container.innerHTML = `
       <div class="col-12">
         <div class="empty-state">
@@ -128,13 +172,28 @@ function renderEvents() {
     return;
   }
 
+  if (events.length === 0) {
+    container.innerHTML = `
+      <div class="col-12">
+        <div class="empty-state">
+          <h3 class="h5">No matching events found</h3>
+          <p class="text-muted mb-0">
+            Try changing the category filter to show more events.
+          </p>
+        </div>
+      </div>
+    `;
+    return;
+  }
+
   container.innerHTML = events.map(function (eventItem) {
     return `
       <div class="col-md-6 col-xl-4">
         <article class="event-card">
           <div class="event-card-body">
-            <div class="mb-3">
+            <div class="d-flex justify-content-between align-items-start gap-2 mb-3">
               <span class="event-category">${eventItem.category}</span>
+              ${getEventStatusBadge(eventItem.date)}
             </div>
 
             <h3 class="h5">${eventItem.title}</h3>
@@ -149,23 +208,23 @@ function renderEvents() {
 
             <p class="mb-4">${eventItem.description}</p>
 
-<div class="d-flex gap-2 flex-wrap">
-  <button
-    type="button"
-    class="btn btn-sm btn-outline-primary"
-    onclick="openEditEventModal('${eventItem.id}')"
-  >
-    Edit Event
-  </button>
+            <div class="d-flex gap-2 flex-wrap">
+              <button
+                type="button"
+                class="btn btn-sm btn-outline-primary"
+                onclick="openEditEventModal('${eventItem.id}')"
+              >
+                Edit Event
+              </button>
 
-  <button
-    type="button"
-    class="btn btn-sm btn-outline-danger"
-    onclick="deleteEvent('${eventItem.id}')"
-  >
-    Delete Event
-  </button>
-</div>
+              <button
+                type="button"
+                class="btn btn-sm btn-outline-danger"
+                onclick="deleteEvent('${eventItem.id}')"
+              >
+                Delete Event
+              </button>
+            </div>
           </div>
         </article>
       </div>
@@ -275,9 +334,23 @@ function deleteEvent(eventId) {
   renderEvents();
 }
 
+function handleFilterAndSortControls() {
+  const filterCategory = document.getElementById("filterCategory");
+  const sortEvents = document.getElementById("sortEvents");
+
+  if (filterCategory) {
+    filterCategory.addEventListener("change", renderEvents);
+  }
+
+  if (sortEvents) {
+    sortEvents.addEventListener("change", renderEvents);
+  }
+}
+
 document.addEventListener("DOMContentLoaded", function () {
   handleAddEventForm();
   renderEvents();
   handleClearDemoData();
   handleEditEventForm();
+  handleFilterAndSortControls();
 });

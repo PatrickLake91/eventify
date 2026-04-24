@@ -47,7 +47,7 @@
   <header class="page-header">
     <div class="container">
       <h1 class="fw-bold">View Events</h1>
-      <p class="lead mb-0">Review events previously added to the Eventify prototype.</p>
+      <p class="lead mb-0">Review, filter and manage events previously added to the Eventify prototype.</p>
     </div>
   </header>
 
@@ -64,6 +64,32 @@
         <button type="button" id="clearEventsButton" class="btn btn-outline-danger">Clear Demo Data</button>
       </div>
     </div>
+
+    <!-- Filters and sorting -->
+    <section class="filter-panel mb-4" aria-label="Event filters and sorting">
+      <div class="row g-3 align-items-end">
+        <div class="col-md-6 col-lg-4">
+          <label for="filterCategory" class="form-label">Filter by category</label>
+          <select id="filterCategory" class="form-select">
+            <option value="">All Categories</option>
+            <option value="Community">Community</option>
+            <option value="Music">Music</option>
+            <option value="Education">Education</option>
+            <option value="Sport">Sport</option>
+            <option value="Arts and Culture">Arts and Culture</option>
+            <option value="Business">Business</option>
+          </select>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <label for="sortEvents" class="form-label">Sort by date</label>
+          <select id="sortEvents" class="form-select">
+            <option value="newest">Newest first</option>
+            <option value="oldest">Oldest first</option>
+          </select>
+        </div>
+      </div>
+    </section>
 
     <div id="eventsContainer" class="row g-4">
       <!-- JavaScript will insert event cards here -->

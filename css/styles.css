@@ -185,6 +185,33 @@ main {
   color: var(--eventify-muted);
 }
 
+.filter-panel {
+  background: #ffffff;
+  border: 1px solid var(--eventify-border);
+  border-radius: 18px;
+  padding: 1.25rem;
+  box-shadow: 0 10px 24px rgba(31, 41, 55, 0.05);
+}
+
+.event-status {
+  display: inline-block;
+  padding: 0.25rem 0.65rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.event-status-upcoming {
+  background: rgba(20, 85, 217, 0.12);
+  color: var(--eventify-primary-dark);
+}
+
+.event-status-past {
+  background: rgba(107, 114, 128, 0.16);
+  color: #4b5563;
+}
+
 @media (max-width: 767px) {
   .hero-section {
     padding: 3rem 0;
