@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eventify | About</title>
+
+  <!-- Bootstrap CSS framework -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="index.html">Eventify</a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="mainNavbar">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="add-event.html">Add Event</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="events.html">View Events</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="about.html">About</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page header -->
+  <header class="page-header">
+    <div class="container">
+      <h1 class="fw-bold">About Eventify</h1>
+      <p class="lead mb-0">A prototype web platform for advertising public events.</p>
+    </div>
+  </header>
+
+  <!-- About content -->
+  <main class="container my-5">
+    <div class="row g-4">
+      <div class="col-lg-7">
+        <section class="info-card">
+          <h2 class="h4">Website description</h2>
+          <p>
+            Eventify is designed as a simple event advertising platform for a single event organiser.
+            The prototype allows the organiser to add event information and view events that have previously been added.
+          </p>
+          <p>
+            The implemented version focuses on the required front-end prototype activities. The wider full-stack design is represented through architecture documentation, including an ERD and sequence diagrams.
+          </p>
+        </section>
+      </div>
+
+      <div class="col-lg-5">
+        <section class="info-card">
+          <h2 class="h4">Developer</h2>
+          <p>
+            This prototype was developed for the DAT6006 Full Stack Development PRES assessment.
+          </p>
+          <p>
+            The design applies Bootstrap, custom CSS, JavaScript interactivity, local browser storage, and usability principles.
+          </p>
+        </section>
+      </div>
+
+      <div class="col-12">
+        <section class="info-card">
+          <h2 class="h4">Design and architecture approach</h2>
+          <p>
+            The interface uses a consistent layout, clear navigation, form validation, responsive design and visual feedback.
+            The conceptual architecture follows an MVC-inspired structure where pages act as views, JavaScript handles interaction logic, and localStorage simulates prototype data persistence.
+          </p>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container text-center">
+      <p class="mb-0">&copy; 2026 Eventify. Developed for DAT6006 Full Stack Development.</p>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JavaScript -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Custom JavaScript -->
+  <script src="js/main.js"></script>
+</body>
+</html>
