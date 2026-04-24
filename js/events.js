@@ -112,10 +112,10 @@ function getEventStatusBadge(dateValue) {
   eventDate.setHours(0, 0, 0, 0);
 
   if (eventDate < today) {
-    return `<span class="event-status event-status-past">Past</span>`;
+    return `<span class="event-status event-status-past" title="This event date has passed">Past</span>`;
   }
 
-  return `<span class="event-status event-status-upcoming">Upcoming</span>`;
+  return `<span class="event-status event-status-upcoming" title="This event is today or upcoming">Upcoming</span>`;
 }
 
 function getFilteredAndSortedEvents() {
